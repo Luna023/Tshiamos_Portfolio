@@ -11,41 +11,38 @@ document.addEventListener("DOMContentLoaded", function () {
   let charIndex = 0;
   let isDeleting = false;
   let currentWord = words[wordIndex];
-  let typingSpeed = 150; // Speed of typing characters
-  let deletingSpeed = 100; // Speed of deleting characters
-  let waitTime = 1000; // Time to wait before deleting
+  let typingSpeed = 150; 
+  let deletingSpeed = 100; 
+  let waitTime = 1000; 
 
   function type() {
     if (isDeleting) {
-      // Delete characters
+     
       charIndex--;
       spanElement.textContent = currentWord.slice(0, charIndex);
     } else {
-      // Type characters
+      
       charIndex++;
       spanElement.textContent = currentWord.slice(0, charIndex);
     }
 
-    // If we reach the end of the word, start deleting after a delay
     if (!isDeleting && charIndex === currentWord.length) {
       setTimeout(() => {
         isDeleting = true;
       }, waitTime);
     }
 
-    // If we've deleted all characters, move to the next word
     if (isDeleting && charIndex === 0) {
       isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length; // Move to the next word in the array
+      wordIndex = (wordIndex + 1) % words.length; 
       currentWord = words[wordIndex];
     }
 
-    // Control typing and deleting speeds
     const currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
     setTimeout(type, currentSpeed);
   }
 
-  type(); // Start the typing effect
+  type(); 
 });
 
 let menuIconc = document.querySelector("#menu-icon");
